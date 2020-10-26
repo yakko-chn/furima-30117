@@ -8,8 +8,6 @@
 | --------------------- | -------- | ----------- |
 | nickname              | string   | null: false |
 | email                 | string   | null: false |
-| password              | string   | null: false |
-| password_confirmation | string   | null: false |
 | first_name            | string   | null: false |
 | last_name             | string   | null: false |
 | first_name_kana       | string   | null: false |
@@ -26,15 +24,14 @@
 
 | Column                 | Type        | Options                        |
 | ---------------------- | ----------- | ------------------------------ |
-| name                   | string      | null: false                    |
+| item_name              | string      | null: false                    |
 | text                   | text        | null: false                    |
 | category_id            | integer     | null: false                    |
-| item_status            | integer     | null: false                    |
-| seller_user            | string      | null: false                    |
-| buyer_user             | string      | null: false                    |
-| delivery_charge        | integer     | null: false                    |
-| shopping_area          | integer     | null: false                    |
-| shopping_day           | integer     | null: false                    |
+| item_status_id         | integer     | null: false                    |
+| user                   | references  | null: false, foreign_key: true |
+| delivery_charge_id     | integer     | null: false                    |
+| shopping_area_id       | integer     | null: false                    |
+| shopping_day_id        | integer     | null: false                    |
 | price                  | integer     | null: false                    |
 
 ### Association
@@ -48,11 +45,12 @@
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
 | user            | references | null: false, foreign_key: true |
+| item            | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :items
+- belongs_to :item
 - has_one    :delivery_address
 
 

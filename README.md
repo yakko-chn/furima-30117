@@ -4,19 +4,18 @@
 
 ## users テーブル
 
-| Column                | Type   | Options     |
-| --------------------- | ------ | ----------- |
-| nickname              | string | null: false |
-| email                 | string | null: false |
-| password              | string | null: false |
-| password_confirmation | string | null: false |
-| first_name            | string | null: false |
-| last_name             | string | null: false |
-| first_name_kana       | string | null: false |
-| last_name_kana        | string | null: false |
-| birth_year            | string | null: false |
-| birth_month           | string | null: false |
-| birth_day             | string | null: false |
+| Column                | Type     | Options     |
+| --------------------- | -------- | ----------- |
+| nickname              | string   | null: false |
+| email                 | string   | null: false |
+| password              | string   | null: false |
+| password_confirmation | string   | null: false |
+| first_name            | string   | null: false |
+| last_name             | string   | null: false |
+| first_name_kana       | string   | null: false |
+| last_name_kana        | string   | null: false |
+| birthday              | date     | null: false |
+
 
 ### Association
 
@@ -26,19 +25,18 @@
 
 ## items テーブル
 
-| Column                 | Type       | Options                        |
-| ---------------------- | -----------| ------------------------------ |
-| image                  | string     | null: false                    |
-| name                   | string     | null: false                    |
-| text                   | text       | null: false                    |
-| category_id            | string     | null: false                    |
-| item_status            | string     | null: false                    |
-| seller_user_id         | string     | null: false                    |
-| buyer_user_id          | string     | null: false                    |
-| delivery_charge        | string     | null: false                    |
-| shopping_area          | string     | null: false                    |
-| shopping_day           | string     | null: false                    |
-| price                  | integer    | null: false                    |
+| Column                 | Type        | Options                        |
+| ---------------------- | ----------- | ------------------------------ |
+| name                   | string      | null: false                    |
+| text                   | text        | null: false                    |
+| category_id            | integer     | null: false                    |
+| item_status            | integer     | null: false                    |
+| seller_user            | string      | null: false                    |
+| buyer_user             | string      | null: false                    |
+| delivery_charge        | integer     | null: false                    |
+| shopping_area          | integer     | null: false                    |
+| shopping_day           | integer     | null: false                    |
+| price                  | integer     | null: false                    |
 
 ### Association
 
@@ -52,12 +50,12 @@
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
 | item_id         | references | null: false, foreign_key: true |
-| buyer_user_id   | references | null: false, foreign_key: true |
+| buyer_user      | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :prototype
+- belongs_to :items
 - has_one    :delivery_address
 
 
@@ -65,7 +63,7 @@
 
 | Column        | Type        | Options                        |
 | ------------- | ----------  | ------------------------------ |
-| post_number   | integer     | null: false                    |
+| post_number   | string      | null: false                    |
 | prefecture    | string      | null: false                    |
 | city          | string      | null: false                    |
 | address1      | string      | null: false                    |
@@ -77,4 +75,4 @@
 
 - belongs_to :user
 - belongs_to :items
-- belongs_to :delivery_address
+- belongs_to :order

@@ -21,7 +21,6 @@
 
 - has_many :items
 - has_many :orders
-- has_one  :delivery_address
 
 ## items テーブル
 
@@ -42,15 +41,13 @@
 
 - belongs_to :user
 - has_one    :order
-- has_one    :delivery_address
 
 
 ## orders テーブル
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
-| item_id         | references | null: false, foreign_key: true |
-| buyer_user      | references | null: false, foreign_key: true |
+| user            | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -59,7 +56,7 @@
 - has_one    :delivery_address
 
 
-## address テーブル
+## delivery_address テーブル
 
 | Column        | Type        | Options                        |
 | ------------- | ----------  | ------------------------------ |
@@ -69,10 +66,7 @@
 | address1      | string      | null: false                    |
 | address2      | string      | null: false                    |
 | phone_number  | string      | null: false                    |
-
+| order         | references  | null: false, foreign_key: true |
 
 ### Association
-
-- belongs_to :user
-- belongs_to :items
 - belongs_to :order

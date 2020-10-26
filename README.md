@@ -24,7 +24,7 @@
 
 | Column                 | Type        | Options                        |
 | ---------------------- | ----------- | ------------------------------ |
-| item_name              | string      | null: false                    |
+| name                   | string      | null: false                    |
 | text                   | text        | null: false                    |
 | category_id            | integer     | null: false                    |
 | item_status_id         | integer     | null: false                    |
@@ -59,7 +59,7 @@
 | Column        | Type        | Options                        |
 | ------------- | ----------  | ------------------------------ |
 | post_number   | string      | null: false                    |
-| prefecture    | string      | null: false                    |
+| prefecture_id | integer     | null: false                    |
 | city          | string      | null: false                    |
 | address1      | string      | null: false                    |
 | address2      | string      | null: false                    |

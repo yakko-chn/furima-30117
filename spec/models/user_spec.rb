@@ -71,7 +71,19 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
 
-      it 'パスワードとパスワード（確認用）、値の一致でない場合、登録できない' do
+      it 'password_confirmationが数字でない場合、保存されない' do
+        @user.password_confirmation = '12345678'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+
+      it 'password_confirmationがアルファベットだけでない場合、保存されない' do
+        @user.password_confirmation = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+
+      it '2回同じパスワードを入力していない場合、登録できない' do
         @user.password = '12345678'
         @user.password_confirmation = 'jskajsakns'
         @user.valid?

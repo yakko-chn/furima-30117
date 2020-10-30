@@ -3,7 +3,6 @@ window.addEventListener('load', () => {
  
  priceInput.addEventListener("input", () => {
   const inputValue = priceInput.value;
-   console.log(inputValue);
 
   // 販売手数料の計算
    const addTaxDom = document.getElementById("add-tax-price");
@@ -15,6 +14,5 @@ window.addEventListener('load', () => {
    const profit = document.getElementById("profit");
    const profitValue = (Math.floor(inputValue - (inputValue * 0.1)));
    profit.innerHTML = profitValue
-   console.log(profit);
  }); 
 });

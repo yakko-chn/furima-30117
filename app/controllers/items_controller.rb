@@ -2,8 +2,6 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new,:create]
 
   def index
-    # @items = Item.order("created_at DESC")
-    @items = Item.all
   end
 
   def new
@@ -15,7 +13,6 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path, notice: "登録が完了しました"
     else
-      @item.valid?
       render :new
     end
   end

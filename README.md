@@ -31,7 +31,7 @@
 | item_status_id         | integer     | null: false                    |
 | user                   | references  | null: false, foreign_key: true |
 | delivery_charge_id     | integer     | null: false                    |
-| shopping_area_id       | integer     | null: false                    |
+| prefecture_id          | integer     | null: false                    |
 | shopping_day_id        | integer     | null: false                    |
 | price                  | integer     | null: false                    |
 

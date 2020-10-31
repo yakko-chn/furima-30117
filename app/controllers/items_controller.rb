@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
     before_action :authenticate_user!, only: [:edit,:create]
-    before_action :move_to_top_page, only: [:edit]
+    before_action :move_to_top_page, only: [:edit,:destroy]
     before_action :set_item, only: [:edit,:show,:update]  
 
 
@@ -35,6 +35,14 @@ class ItemsController < ApplicationController
       render :new
     end
   
+  end
+
+  def destroy
+    
+    if @item.destroy
+      redirect_to  action: :index
+    end
+
   end
 
   private

@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
     before_action :authenticate_user!, only: [:edit,:create]
-    before_action :move_to_top_page, only: [:edit]
-    before_action :set_item, only: [:edit,:show,:update,:destroy]  
+    before_action :move_to_top_page, only: [:edit,:destroy]
+    before_action :set_item, only: [:edit,:show,:update]  
 
 
   def index

@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
     before_action :authenticate_user!, only: [:edit,:create]
     before_action :move_to_top_page, only: [:edit]
-    before_action :set_item, only: [:edit,:show,:update]  
+    before_action :set_item, only: [:edit,:show,:update,:destroy]  
 
 
   def index
@@ -38,8 +38,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    item.destroy
+    @item.destroy
   end
 
   private

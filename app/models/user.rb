@@ -16,16 +16,16 @@ class User < ApplicationRecord
   validates  :password, confirmation: true, format: { with: VALID_PASSWORD }
   validates  :password_confirmation, presence: true
 
-  with_options format: {with: /\A[ぁ-んァ-ン一-龥]/.freeze} , presence: true do
+  with_options format: { with: /\A[ぁ-んァ-ン一-龥]/.freeze }, presence: true do
     validates  :first_name
     validates  :last_name
   end
 
-  with_options format: {with: /\A[ァ-ヶー－]+\z/.freeze} , presence: true do
+  with_options format: { with: /\A[ァ-ヶー－]+\z/.freeze }, presence: true do
     validates  :first_name_kana
     validates  :last_name_kana
   end
 
- #Association
+  # Association
   has_many :items
 end

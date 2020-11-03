@@ -8,9 +8,6 @@ class OrdersController < ApplicationController
     @order_address_form = OrderAddressForm.new
   end
 
-  def new
-  end
-
   def create
     @order_address_form = OrderAddressForm.new(address_params)
     # 上記のインスタンス変数で、情報を取得。

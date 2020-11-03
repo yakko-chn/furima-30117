@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :set_item, only: [:index,:create]
-  before_action :move_to_top_page,:no_item
+  before_action :move_to_top_page
+  before_action :no_item
  
   def index
     @order_address_form = OrderAddressForm.new
@@ -43,7 +44,7 @@ class OrdersController < ApplicationController
   end
 
   def move_to_top_page
-   if user_signed_in? && @item.user_id == current_user.id
+   if @item.user_id == current_user.id
     redirect_to root_path
    end
   end

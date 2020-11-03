@@ -52,6 +52,12 @@ RSpec.describe OrderAddressForm, type: :model do
         expect(@order_address_form.errors.full_messages).to include('Prefecture is not a number')
       end
 
+      it 'prefecture_idが0番だと保存されない' do
+        @order_address_form.prefecture_id = '0'
+        @order_address_form.valid?
+        expect(@order_address_form.errors.full_messages).to include('Prefecture must be other than 0')
+      end
+
       it 'cityは空だと保存されない' do
         @order_address_form.city = nil
         @order_address_form.valid?

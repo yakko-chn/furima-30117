@@ -1,6 +1,9 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
+  before_action :move_to_top_page
+  before_action :set_order, only: [:index,:create]
+
   def index
-    @item = Item.find(params[:item_id])
     @order_address_form = OrderAddressForm.new
   end
 
@@ -8,9 +11,8 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order_address_form = OrderAddressForm.new(address_params)
-    # 上記のインスタンス変数で、情報を取得しただけ。
+    # 上記のインスタンス変数で、情報を取得。
     if @order_address_form.valid?
       order_pay
       @order_address_form.save
@@ -21,7 +23,6 @@ class OrdersController < ApplicationController
   end
 
   private
-
   def address_params
     # 送られてきた情報(params)からpermit分を取得する
     # order_address_form.rbのアクセッサーの値と同じでないと取得できない。
@@ -36,4 +37,15 @@ class OrdersController < ApplicationController
       currency: 'jpy'
     )
   end
+
+  def set_order
+    @item = Item.find(params[:item_id])
+  end
+
+  def move_to_top_page
+    @item = Item.find(params[:item_id])
+   if user_signed_in? && @item.user_id == current_user.id
+    redirect_to root_path
+  end
+ end
 end

@@ -12,14 +12,14 @@ const pay = () => {
       exp_year: `20${formData.get("exp_year")}`,
       cvc: formData.get("cvc")
     };
-
     Payjp.createToken(card,(status,response ) => {
       if (status == 200) {
        const token = response.id;
        const dom = document.getElementById("charge-form");
        const tokenObj = `<input value=${token} name='token' type="hidden">`;
        dom.insertAdjacentHTML("beforeend",tokenObj);
-      };
+      }
+      
       document.getElementById("card-number").removeAttribute("number");
       document.getElementById("card-exp-month").removeAttribute("exp_month");
       document.getElementById("card-exp-year").removeAttribute("exp_year");

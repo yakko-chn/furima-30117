@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
-  before_action :move_to_top_page
-  before_action :set_order, only: [:index,:create]
-
+  before_action :set_item, only: [:index,:create]
+  before_action :move_to_top_page,:no_item
+ 
   def index
     @order_address_form = OrderAddressForm.new
   end
@@ -38,14 +38,19 @@ class OrdersController < ApplicationController
     )
   end
 
-  def set_order
+  def set_item
     @item = Item.find(params[:item_id])
   end
 
   def move_to_top_page
-    @item = Item.find(params[:item_id])
    if user_signed_in? && @item.user_id == current_user.id
     redirect_to root_path
+   end
   end
- end
+
+  def no_item
+    if @item.order != nil
+      redirect_to root_path
+    end
+  end
 end

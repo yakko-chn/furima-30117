@@ -3,13 +3,14 @@ require 'rails_helper'
 RSpec.describe OrderAddressForm, type: :model do
   describe '#create' do
     before do
-      @order_address_form = FactoryBot.build(:order_address_form)
+      @user = FactoryBot.build(:user)
+      @item = FactoryBot.build(:item)
+      @order_address_form = FactoryBot.build(:order_address_form,user_id: @user.id,item_id: @item.id)
     end
 
     # 正常系
     context '購入がうまくいくとき' do
       it '全ての項目の入力されると登録可能' do
-        # @order_address_form = FactoryBot.build(:order_address_form)
         expect(@order_address_form).to be_valid
       end
 
@@ -55,18 +56,6 @@ RSpec.describe OrderAddressForm, type: :model do
         @order_address_form.city = nil
         @order_address_form.valid?
         expect(@order_address_form.errors.full_messages).to include("City can't be blank")
-      end
-
-      it 'phone_numberは空だと保存されない' do
-        @order_address_form.phone_number = nil
-        @order_address_form.valid?
-        expect(@order_address_form.errors.full_messages).to include("Phone number can't be blank")
-      end
-
-      it 'phone_numberは空だと保存されない' do
-        @order_address_form.phone_number = nil
-        @order_address_form.valid?
-        expect(@order_address_form.errors.full_messages).to include("Phone number can't be blank")
       end
 
       it 'phone_numberは空だと保存されない' do
